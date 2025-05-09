@@ -44,7 +44,7 @@ async def tweet_watcher(channel):
     await bot.wait_until_ready()
     while not bot.is_closed():
         try:
-            tweet = get_tweet(previd)  # Drop await if it's not async
+            tweet = await get_tweet(previd)  # Drop await if it's not async
             if tweet:
                 previd = tweet['id']
                 message = f"\n{tweet['body']}\n🔗 {tweet['link']}"
