@@ -6,7 +6,7 @@ load_dotenv()
 
 BEARER_TOKEN = os.getenv("BEARER_TOKEN")
 
-def get_tweet(previd):
+async def get_tweet(previd):
     client = tweepy.Client(
         bearer_token=BEARER_TOKEN
     )

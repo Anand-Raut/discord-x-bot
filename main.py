@@ -1,4 +1,3 @@
-# bot.py
 import os
 import logging
 import discord
@@ -11,7 +10,7 @@ from twscrapper import get_tweet
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD = os.getenv('DISCORD_GUILD')
-CHANNEL_ID = os.getenv('CHANNEL_ID')
+CHANNEL_ID = int(os.getenv('CHANNEL_ID'))
 handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode= 'w')
 intents = discord.Intents.default()
 intents.guilds = True  # required for on_ready and accessing guilds
@@ -36,7 +35,7 @@ async def tweet_watcher(channel):
     await bot.wait_until_ready()
     while not bot.is_closed():
         try:
-            tweet = get_tweet(previd)
+            tweet = await get_tweet(previd)
             if tweet:
                 previd = tweet['id']  # Update ID
                 message = f"\n{tweet['body']}\n🔗 {tweet['link']}"
