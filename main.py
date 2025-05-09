@@ -11,7 +11,7 @@ from twscrapper import get_tweet
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD = os.getenv('DISCORD_GUILD')
-CHANNEL_ID = 1370414182679183584
+CHANNEL_ID = os.getenv('CHANNEL_ID')
 handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode= 'w')
 intents = discord.Intents.default()
 intents.guilds = True  # required for on_ready and accessing guilds
