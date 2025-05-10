@@ -13,7 +13,7 @@ async def get_tweet(previd):
     user = client.get_user(username=username)
     user_id = user.data.id
 
-    tweets = client.get_users_tweets(id=user_id, max_results=5, tweet_fields=["created_at", "attachments"])
+    tweets = client.get_users_tweets(id=user_id, max_results=5, tweet_fields=["created_at"])
 
     if tweets.data:
         tweet = tweets.data[0]
