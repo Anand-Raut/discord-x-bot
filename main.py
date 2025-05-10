@@ -8,16 +8,13 @@ from twscrapper import get_tweet
 from flask import Flask
 from threading import Thread
 
-# Load env vars
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 GUILD = os.getenv('DISCORD_GUILD')
 CHANNEL_ID = int(os.getenv('CHANNEL_ID'))
 
-# Setup logging
 handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w')
 
-# Setup intents
 intents = discord.Intents.default()
 intents.guilds = True
 intents.message_content = True
@@ -25,7 +22,7 @@ intents.members = True
 
 bot = commands.Bot(command_prefix="!", intents=intents)
 
-# Flask app to keep Render happy
+
 app = Flask(__name__)
 
 @app.route('/')
@@ -44,7 +41,7 @@ async def tweet_watcher(channel):
     await bot.wait_until_ready()
     while not bot.is_closed():
         try:
-            tweet = await get_tweet(previd)  # Drop await if it's not async
+            tweet = await get_tweet(previd)
             if tweet:
                 previd = tweet['id']
                 message = f"\n{tweet['body']}\n🔗 {tweet['link']}"
@@ -53,7 +50,7 @@ async def tweet_watcher(channel):
                     await channel.send(media_url)
         except Exception as e:
             print(f"Error fetching/sending tweet: {e}")
-        await asyncio.sleep(1800)  # every 30 seconds
+        await asyncio.sleep(1800)
 
 @bot.event
 async def on_ready():
