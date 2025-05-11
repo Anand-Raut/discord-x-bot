@@ -22,14 +22,13 @@ async def get_tweet(previd):
             return None
 
         text = tweet.text.lower()
-        if "india" in text or "pakistan" in text:
-            tweet_data = {
-                "id": tweet.id,
-                "body": tweet.text,
-                "link": f"https://twitter.com/{username}/status/{tweet.id}",
-                "created_at": str(tweet.created_at),
-                "metrics": tweet.public_metrics,
-            }
-            return tweet_data
+        tweet_data = {
+            "id": tweet.id,
+            "body": tweet.text,
+            "link": f"https://twitter.com/{username}/status/{tweet.id}",
+            "created_at": str(tweet.created_at),
+            "metrics": tweet.public_metrics,
+        }
+        return tweet_data
 
     return None

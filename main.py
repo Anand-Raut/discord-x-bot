@@ -22,7 +22,6 @@ intents.members = True
 
 bot = commands.Bot(command_prefix="!", intents=intents)
 
-
 app = Flask(__name__)
 
 @app.route('/')
@@ -33,7 +32,6 @@ def run_flask():
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
 
-# Tweet watcher
 previd = None
 
 async def tweet_watcher(channel):
