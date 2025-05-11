@@ -45,7 +45,7 @@ async def tweet_watcher(channel):
                 await channel.send(message)
         except Exception as e:
             print(f"Error fetching/sending tweet: {e}")
-        await asyncio.sleep(10)
+        await asyncio.sleep(1800)
 
 @bot.event
 async def on_ready():
