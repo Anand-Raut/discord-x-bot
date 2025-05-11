@@ -26,8 +26,6 @@ async def get_tweet(previd):
             "id": tweet.id,
             "body": tweet.text,
             "link": f"https://twitter.com/{username}/status/{tweet.id}",
-            "created_at": str(tweet.created_at),
-            "metrics": tweet.public_metrics,
         }
         return tweet_data
 

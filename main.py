@@ -18,7 +18,6 @@ handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w'
 intents = discord.Intents.default()
 intents.guilds = True
 intents.message_content = True
-intents.members = True
 
 bot = commands.Bot(command_prefix="!", intents=intents)
 
@@ -44,11 +43,9 @@ async def tweet_watcher(channel):
                 previd = tweet['id']
                 message = f"\n{tweet['body']}\n🔗 {tweet['link']}"
                 await channel.send(message)
-                for media_url in tweet.get("media", []):
-                    await channel.send(media_url)
         except Exception as e:
             print(f"Error fetching/sending tweet: {e}")
-        await asyncio.sleep(1800)
+        await asyncio.sleep(10)
 
 @bot.event
 async def on_ready():
